@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane style="-fx-background-color: #071952;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uasperpustakaan.controllers.DashboardController">
+
+    <children>
+
+        <!-- Header -->
+        <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #009afa;" text="Manajemen Buku Perpustakaan" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="20.0" />
+
+        <!-- Area Filter -->
+        <HBox spacing="10" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="60.0">
+            <children>
+                <ComboBox fx:id="cbxKategori1" prefWidth="150.0" promptText="Kategori" />
+                <TextField fx:id="txtJudul" promptText="Cari Judul" />
+                <DatePicker fx:id="dpcDari" promptText="Dari Tanggal" />
+                <DatePicker fx:id="dpcSampai" promptText="Sampai Tanggal" />
+                <ComboBox fx:id="cbxSorting" prefWidth="140.0" promptText="Urutkan" />
+                <Button fx:id="btnFilter" onAction="#handleBtnFilter" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Cari" />
+                <Button fx:id="btnReset" onAction="#handleBtnReset" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" text="Reset" />
+                <Button fx:id="btnExportCSV" onAction="#handleExportCSV" style="-fx-background-color: #1abc9c; -fx-text-fill: white;" text="Export CSV" />
+            </children>
+        </HBox>
+
+        <!-- Form Input -->
+        <VBox spacing="8" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="110.0">
+            <children>
+
+                <!-- Form Field Baris 1 -->
+                <HBox spacing="10">
+                    <children>
+                        <VBox spacing="4">
+                            <children>
+                                <Label text="Kode Buku" textFill="WHITE" />
+                                <TextField fx:id="tfKodeBuku" />
+                            </children>
+                        </VBox>
+                        <VBox spacing="4">
+                            <children>
+                                <Label text="Kategori" textFill="WHITE" />
+                                <ComboBox fx:id="cbxKategori2" prefWidth="150.0" />
+                            </children>
+                        </VBox>
+                        <VBox spacing="4">
+                            <children>
+                                <Label text="Judul" textFill="WHITE" />
+                                <TextField fx:id="tfJudul" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <!-- Form Field Baris 2 -->
+                <HBox spacing="10">
+                    <children>
+                        <VBox spacing="4">
+                            <children>
+                                <Label text="Pengarang" textFill="WHITE" />
+                                <TextField fx:id="tfPengarang" />
+                            </children>
+                        </VBox>
+                        <VBox spacing="4">
+                            <children>
+                                <Label text="Penerbit" textFill="WHITE" />
+                                <TextField fx:id="tfPenerbit" />
+                            </children>
+                        </VBox>
+                        <VBox spacing="4">
+                            <children>
+                                <Label text="Tahun" textFill="WHITE" />
+                                <TextField fx:id="tfTahun" />
+                            </children>
+                        </VBox>
+                        <VBox spacing="4">
+                            <children>
+                                <Label text="Edisi" textFill="WHITE" />
+                                <TextField fx:id="tfEdisi" />
+                            </children>
+                        </VBox>
+                        <VBox spacing="4">
+                            <children>
+                                <Label text="Tanggal Pengadaan" textFill="WHITE" />
+                                <DatePicker fx:id="dpcPilih" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <!-- Tombol Aksi -->
+                <HBox spacing="10">
+                    <children>
+                        <Button fx:id="add" onAction="#handleAdd" style="-fx-background-color: #2ecc71; -fx-text-fill: white;" text="Tambah" />
+                        <Button fx:id="update" onAction="#handleUpdate" style="-fx-background-color: #f39c12; -fx-text-fill: white;" text="Perbarui" />
+                        <Button fx:id="delete" onAction="#handleDelete" style="-fx-background-color: #c0392b; -fx-text-fill: white;" text="Hapus" />
+                        <Button fx:id="btnResetForm" onAction="#handleResetForm" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Reset Form" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="btnLogout" onAction="#handleLogout" style="-fx-background-color: #34495E; -fx-text-fill: white;" text="Logout" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+
+        <!-- Tabel Buku -->
+        <TableView fx:id="tblViewBuku" style="-fx-border-color: #DADFE1; -fx-background-color: white;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="340.0">
+            <columns>
+                <TableColumn fx:id="colKodeBuku" prefWidth="100.0" text="Kode Buku" />
+                <TableColumn fx:id="colKategori" prefWidth="150.0" text="Kategori" />
+                <TableColumn fx:id="colJudul" prefWidth="150.0" text="Judul" />
+                <TableColumn fx:id="colPengarang" prefWidth="134.39999389648438" text="Pengarang" />
+                <TableColumn fx:id="colPenerbit" prefWidth="139.199951171875" text="Penerbit" />
+                <TableColumn fx:id="colTahun" prefWidth="109.5999755859375" text="Tahun" />
+                <TableColumn fx:id="colEdisi" prefWidth="88.800048828125" text="Edisi" />
+                <TableColumn fx:id="colPengadaan" prefWidth="147.9998779296875" text="Tanggal Pengadaan" />
+            </columns>
+        </TableView>
+
+    </children>
+</AnchorPane>
