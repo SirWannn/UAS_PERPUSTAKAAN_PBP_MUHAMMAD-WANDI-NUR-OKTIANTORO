@@ -276,7 +276,7 @@ public class DashboardController implements Initializable {
     }
 
     private void clearForm() {
-        tfKodeBuku.clear(); // hanya clear, tidak generate ulang
+        tfKodeBuku.clear();
         tfJudul.clear();
         tfPengarang.clear();
         tfPenerbit.clear();
