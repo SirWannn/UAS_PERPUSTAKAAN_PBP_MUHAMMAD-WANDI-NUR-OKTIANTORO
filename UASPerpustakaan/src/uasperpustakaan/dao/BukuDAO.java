@@ -23,7 +23,7 @@ public class BukuDAO {
         }
 
         if (filterJudul != null && !filterJudul.isEmpty()) {
-            sql += " AND buku.judul LIKE '%" + filterJudul + "%'";
+            sql += " AND (buku.judul LIKE '%" + filterJudul + "%' OR buku.pengarang LIKE '%" + filterJudul + "%') ";
         }
 
         if (filterKategori != null && !filterKategori.isEmpty()) {
